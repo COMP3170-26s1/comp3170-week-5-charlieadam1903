@@ -90,6 +90,10 @@ public class Week5 implements IWindowListener {
 		// record the new width and height
 		this.width = width;
 		this.height = height;
+		
+		var cam = scene.sceneCam();
+		cam.resize(width, height); // all important method call, maintains the aspect ratio
+		
 		glViewport(0,0,width,height);
 		// TODO: Recalculate the projection matrix when the window is resized. (TASK 2)
 	}

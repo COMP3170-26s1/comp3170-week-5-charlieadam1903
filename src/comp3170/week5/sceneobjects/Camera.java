@@ -51,7 +51,7 @@ public class Camera extends SceneObject {
 
 	
 	public Matrix4f GetViewMatrix(Matrix4f dest) {
-//		translationMatrix.m20
+
 		viewMatrix.identity();
 		viewMatrix = getMatrix();
 
@@ -65,11 +65,7 @@ public class Camera extends SceneObject {
 		// MS = [ 0   sy  0 ]
 		//      [ 0   0   1 ]
 		projectionMatrix.identity(); // SO FUCKING IMPORTANT TO SET IDENTITY	
-//		scaleMatrix.m00(width / zoom);
-//		scaleMatrix.m11(height / zoom);
-//
-//		return scaleMatrix.invert(dest);
-		
+
 		projectionMatrix.m00(width/zoom);
 		projectionMatrix.m11(height/zoom);
 	   
