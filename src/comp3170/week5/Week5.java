@@ -10,6 +10,7 @@ import comp3170.OpenGLException;
 import comp3170.IWindowListener;
 import comp3170.ShaderLibrary;
 import comp3170.Window;
+import comp3170.week5.sceneobjects.Camera;
 import comp3170.InputManager;
 
 import java.io.File;
@@ -18,8 +19,8 @@ import java.io.IOException;
 
 public class Week5 implements IWindowListener {
 	private Window window;
-	private int width = 800;
-	private int height = 800;
+	private int width = 1600;
+	private int height = 1600;
 
 	final private File DIRECTORY = new File("src/comp3170/week5/shaders/"); 
 
@@ -41,6 +42,9 @@ public class Week5 implements IWindowListener {
 		
 		new ShaderLibrary(DIRECTORY);
 		scene = new Scene();
+		var cam = scene.sceneCam();
+		cam.resize(width, height);
+//		cam.setZoom(width * 0.5f);
 	}
 	
 	private Vector2i position = new Vector2i();
@@ -70,8 +74,13 @@ public class Week5 implements IWindowListener {
 		glClearColor(87.0f/255.0f, 60.0f/255.0f, 23.0f/255.0f, 1.0f); // Dirt brown
 		glClear(GL_COLOR_BUFFER_BIT);		
 		
-		// TODO: Use the view and projection matricies to construct the mvpMatrix. (TASK 2)
+		// TODO: Use the view and projection matrices to construct the mvpMatrix. (TASK 2)
 		//			Then send it down the scene graph!
+		
+		Camera camera = scene.sceneCam(); 
+		camera.GetViewMatrix(viewMatrix);
+		camera.GetProjectionMatrix(projectionMatrix);
+		mvpMatrix.set(projectionMatrix).mul(viewMatrix);
 		scene.draw(mvpMatrix);
 			
 	}

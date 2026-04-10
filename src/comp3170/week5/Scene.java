@@ -3,15 +3,16 @@ package comp3170.week5;
 import org.joml.Vector4f;
 import comp3170.InputManager;
 import comp3170.SceneObject;
-
+import comp3170.Shader;
 import comp3170.week5.sceneobjects.*;
 
 public class Scene extends SceneObject {
 	private Camera camera;
+//	private Shader shader;
 	
 	public Scene() {
 		camera = new Camera();
-		createFlower(new Vector4f(0.0f,0.0f,0.f,1.0f));		
+		createFlower(new Vector4f(0.0f,-0.5f,0.f,1.0f));		
 	}
 	
 	public Camera sceneCam() {
@@ -19,7 +20,7 @@ public class Scene extends SceneObject {
 	}
 	
 	public void createFlower(Vector4f position) {
-		Flower flower = new Flower(20);
+		Flower flower = new Flower(10);
 		flower.setParent(this);	
 		flower.getMatrix().translate(position.x,position.y,0.0f);
 	}
